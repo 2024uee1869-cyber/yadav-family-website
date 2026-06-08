@@ -1,0 +1,40 @@
+{
+  "familyName": "Yadav",
+  "tagline": "One Family, One Identity",
+  "established": "1955",
+  "hometown": "Pathreri, Paota",
+  "adminPassword": "yadav@2024",
+  "heroPhotos": [],
+  "filterGroups": [
+    {"id":"all","label":"🌟 All","relations":[]},
+    {"id":"grandparents","label":"👴 Grandparents","relations":["Dada","Dadi","Nana","Nani"]},
+    {"id":"parents","label":"❤️ Parents","relations":["Papa","Mummy"]},
+    {"id":"uncles","label":"🙏 Elders","relations":["Tau","Tai","Chacha","Chachi","Mama","Mami","Bua","Fufa"]},
+    {"id":"cousins","label":"😊 Cousins","relations":["Cousin"]},
+    {"id":"siblings","label":"👫 Siblings","relations":["Bhai","Bhabhi","Behen","Jija","Main"]}
+  ],
+  "members": [
+    {"id":1,"name":"Ramesh Lal Yadav","relation":"Dada","relationHindi":"दादा जी","generation":1,"gender":"male","phone":"","dob":"1942-04-15","city":"Pathreri, Paota","currentRole":"Retired","occupation":"Former farmer, now resting at home","education":"Primary School","photo":"","note":"The pillar of our family"},
+    {"id":2,"name":"Savitri Devi Yadav","relation":"Dadi","relationHindi":"दादी जी","generation":1,"gender":"female","phone":"","dob":"1945-08-20","city":"Pathreri, Paota","currentRole":"Homemaker","occupation":"Taking care of the home and grandchildren","education":"","photo":"","note":"The heart of our family"},
+    {"id":3,"name":"Suresh Kumar Yadav","relation":"Papa","relationHindi":"पापा","generation":2,"gender":"male","phone":"9876543210","dob":"1968-01-10","city":"Jaipur, Rajasthan","currentRole":"Businessman","occupation":"Running a clothing shop for 20+ years","education":"B.Com","photo":"","note":"Our family's foundation"},
+    {"id":4,"name":"Meena Devi Yadav","relation":"Mummy","relationHindi":"मम्मी","generation":2,"gender":"female","phone":"9876500001","dob":"1970-05-18","city":"Jaipur, Rajasthan","currentRole":"Homemaker","occupation":"Raising the family with love and care","education":"12th Pass","photo":"","note":"Our home's warmth"},
+    {"id":5,"name":"Rajesh Kumar Yadav","relation":"Tau","relationHindi":"ताऊ जी","generation":2,"gender":"male","phone":"9800011111","dob":"1962-11-03","city":"Delhi","currentRole":"Govt. Employee","occupation":"Senior Clerk, Delhi Municipal Corporation — 30 years","education":"BA","photo":"","note":""},
+    {"id":6,"name":"Kamla Devi Yadav","relation":"Tai","relationHindi":"ताई जी","generation":2,"gender":"female","phone":"","dob":"1965-03-25","city":"Delhi","currentRole":"Homemaker","occupation":"Managing home and raising children","education":"8th Pass","photo":"","note":""},
+    {"id":7,"name":"Vijay Kumar Yadav","relation":"Chacha","relationHindi":"चाचा जी","generation":2,"gender":"male","phone":"9700022222","dob":"1972-07-14","city":"Agra, UP","currentRole":"Teacher","occupation":"Hindi Teacher at Govt. School — 15 years","education":"M.A. Hindi, B.Ed","photo":"","note":"The most educated in our family"},
+    {"id":8,"name":"Sunita Devi Yadav","relation":"Chachi","relationHindi":"चाची जी","generation":2,"gender":"female","phone":"9700033333","dob":"1975-09-30","city":"Agra, UP","currentRole":"Anganwadi Worker","occupation":"Teaching children at Anganwadi for 10 years","education":"10th Pass","photo":"","note":""},
+    {"id":9,"name":"Priya Yadav","relation":"Cousin","relationHindi":"चचेरी बहन","generation":3,"gender":"female","phone":"9900033333","dob":"1996-04-22","city":"Delhi","currentRole":"Software Engineer","occupation":"Software Engineer at TCS Delhi — 4 years","education":"B.Tech CSE, Delhi University","photo":"","note":"Our family's first engineer"},
+    {"id":10,"name":"Rohit Yadav","relation":"Cousin","relationHindi":"चचेरा भाई","generation":3,"gender":"male","phone":"9900044444","dob":"1999-12-05","city":"Delhi","currentRole":"B.Com Final Year","occupation":"Pursuing B.Com from Delhi University","education":"B.Com (Final Year)","photo":"","note":""},
+    {"id":11,"name":"Ankit Yadav","relation":"Cousin","relationHindi":"चचेरा भाई","generation":3,"gender":"male","phone":"","dob":"2002-06-18","city":"Agra, UP","currentRole":"12th Student","occupation":"12th Science at St. Peter's College Agra","education":"12th Science","photo":"","note":"Preparing for NEET"},
+    {"id":12,"name":"Your Name","relation":"Main","relationHindi":"मैं","generation":3,"gender":"male","phone":"","dob":"2000-01-01","city":"Pathreri, Paota","currentRole":"Website Admin","occupation":"Write your occupation here","education":"Write your degree here","photo":"","note":"Owner of this website"}
+  ],
+  "events": [
+    {"id":1,"title":"Dada Ji's Birthday","date":"2025-04-15","type":"birthday","description":"Dada Ji's 83rd birthday celebration"},
+    {"id":2,"title":"Family Reunion","date":"2025-12-25","type":"reunion","description":"The biggest family gathering of the year"},
+    {"id":3,"title":"Priya Di's Wedding","date":"2026-02-14","type":"wedding","description":"Priya Di's wedding — everyone is invited!"}
+  ],
+  "announcements": [
+    "🙏 Welcome to the Yadav Family official website!",
+    "🎓 Priya Di joined TCS — our family is proud!",
+    "📢 Family Reunion in December at Pathreri — save the date!"
+  ]
+}

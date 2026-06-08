@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yadav Family — Official Website</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#" onclick="showPage('home');return false">
+      <span class="logo-icon">✦</span>
+      <span class="family-name">Yadav Family</span>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a data-page="home"    href="#" onclick="showPage('home');return false"    class="active">Home</a>
+      <a data-page="members" href="#" onclick="showPage('members');return false">Family</a>
+      <a data-page="events"  href="#" onclick="showPage('events');return false">Events</a>
+      <a data-page="about"   href="#" onclick="showPage('about');return false">About Us</a>
+      <a class="nav-admin-btn" href="#" onclick="openAdminLogin();return false">🔐 Admin</a>
+    </div>
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════ PAGE: HOME ═══════ -->
+<div class="page active" id="page-home">
+
+  <div class="hero">
+    <div class="hero-slide-section">
+      <div class="hero-slide-wrap" id="hero-slide-wrap"></div>
+      <button class="hero-arrow left" onclick="prevSlide()" aria-label="Previous">‹</button>
+      <button class="hero-arrow right" onclick="nextSlide()" aria-label="Next">›</button>
+      <div class="hero-dots" id="hero-dots"></div>
+      <div class="hero-admin-bar">
+        <button class="hero-admin-btn" onclick="openAdminPanel()">📸 Manage Photos</button>
+      </div>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-text">
+      <div class="hero-chip">Welcome to Our Home</div>
+      <h1><span class="family-name">Yadav Family</span></h1>
+      <div class="hero-sub" id="hero-tagline">One Family, One Identity</div>
+      <div class="gold-line"></div>
+      <div class="hero-place" id="hero-place">📍 Pathreri, Paota</div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <strong id="stat-members">—</strong>
+          <span>Members</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <strong id="stat-cities">—</strong>
+          <span>Cities</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <strong id="stat-est">—</strong>
+          <span>Together Since</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="announce-bar" id="announce-list"></div>
+
+    <div class="qgrid">
+      <div class="qcard">
+        <div class="qcard-icon">⚡</div>
+        <h3>Quick Links</h3>
+        <button class="qbtn" onclick="showPage('members')">👨‍👩‍👧‍👦 All Family Members</button>
+        <button class="qbtn" onclick="showPage('events')">📅 Upcoming Events</button>
+        <button class="qbtn" onclick="showPage('about')">ℹ️ About Us</button>
+        <button class="qbtn" onclick="openAdminLogin()">🔐 Admin Login</button>
+      </div>
+
+      <div class="qcard">
+        <div class="qcard-icon">🎂</div>
+        <h3>Upcoming Birthdays</h3>
+        <div id="bday-list" class="bday-loading">Loading...</div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-mark">"</div>
+        <p>Family is the strength that stands with you in hardship, and doubles in happiness.</p>
+        <div class="quote-attr">— <span class="family-name">Yadav Family</span></div>
+      </div>
+    </div>
+
+    <div class="preview-section">
+      <div class="sec-head">
+        <div>
+          <div class="sec-title">Our Beloved Members</div>
+          <div class="sec-sub">A few special faces</div>
+        </div>
+        <button onclick="showPage('members')" class="see-all-btn">View All →</button>
+      </div>
+      <div class="members-grid" id="home-preview-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PAGE: MEMBERS ═══════ -->
+<div class="page" id="page-members">
+  <div class="section">
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">Our Family</div>
+        <div class="sec-sub">Complete information about every member</div>
+      </div>
+      <button class="add-member-btn" onclick="openAddMember()">＋ Add Member</button>
+    </div>
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search-input" placeholder="Search by name, role, city..." oninput="renderMembers()">
+    </div>
+    <div class="filter-row" id="filter-tabs-wrap"></div>
+    <div class="members-grid" id="members-grid"></div>
+  </div>
+</div>
+
+<!-- ═══════ PAGE: EVENTS ═══════ -->
+<div class="page" id="page-events">
+  <div class="section">
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">Special Moments</div>
+        <div class="sec-sub">Birthdays, festivals & reunions</div>
+      </div>
+      <button class="add-member-btn" onclick="openAddEvent()">＋ Add Event</button>
+    </div>
+    <div class="events-grid" id="events-grid"></div>
+  </div>
+</div>
+
+<!-- ═══════ PAGE: ABOUT ═══════ -->
+<div class="page" id="page-about">
+  <div class="section">
+    <div class="sec-head">
+      <div>
+        <div class="sec-title">About Us</div>
+        <div class="sec-sub"><span class="family-name">Yadav Family</span> — Our Story</div>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="acard">
+        <h3>🏡 Family Details</h3>
+        <div class="arow"><span class="al">Village / Origin</span><span class="av" id="ab-hometown">—</span></div>
+        <div class="arow"><span class="al">Founded</span><span class="av" id="ab-est">—</span></div>
+        <div class="arow"><span class="al">Total Members</span><span class="av" id="ab-total">—</span></div>
+        <div class="arow"><span class="al">Cities</span><span class="av" id="ab-cities-list">—</span></div>
+      </div>
+      <div class="acard">
+        <h3>👨‍👩‍👧‍👦 Generations</h3>
+        <div class="arow"><span class="al">1st Generation</span><span class="av" id="ab-gen1">—</span></div>
+        <div class="arow"><span class="al">2nd Generation</span><span class="av" id="ab-gen2">—</span></div>
+        <div class="arow"><span class="al">3rd Generation</span><span class="av" id="ab-gen3">—</span></div>
+      </div>
+    </div>
+    <div class="acard admin-tools-card">
+      <h3>🔐 Admin Tools</h3>
+      <div class="admin-tools-btns">
+        <button onclick="openAdminLogin()" class="btn-admin-tool primary">🔐 Admin Login</button>
+        <button onclick="exportJSON()" class="btn-admin-tool">📥 Export Data</button>
+      </div>
+      <p class="admin-tools-note">After logging in as admin, use <strong>⚙️ Full Settings</strong> to customize the website — name, tagline, photos, announcements, filter tabs and more.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="flogo">✦ <span class="family-name">Yadav Family</span></div>
+    <p>Made with love — just for us 🌸</p>
+    <button class="ftoggle" onclick="openAdminLogin()">Admin Access</button>
+  </div>
+</footer>
+
+<!-- Admin floating badge -->
+<div class="admin-fab">
+  <span>🔐 Admin Mode</span>
+  <button class="admin-panel-btn" onclick="openAdminPanel()">⚙️ Settings</button>
+  <button class="admin-fab-exit" onclick="doLogout()" title="Exit">✕</button>
+</div>
+
+<!-- ══════════ MODAL: ADMIN LOGIN ══════════ -->
+<div class="overlay" id="admin-overlay">
+  <div class="mbox" style="max-width:360px">
+    <button class="modal-close" onclick="closeAdminLogin()">✕</button>
+    <h2>🔐 Admin Login</h2>
+    <p class="modal-sub">Only you can make changes.</p>
+    <div class="fg">
+      <label>Password</label>
+      <input type="password" id="admin-pw" placeholder="Enter password...">
+      <div class="err-msg" id="admin-err"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel-m" onclick="closeAdminLogin()">Cancel</button>
+      <button class="btn-save-m" onclick="doLogin()">Login ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL: FULL ADMIN PANEL ══════════ -->
+<div class="overlay" id="admin-panel-overlay">
+  <div class="mbox wide">
+    <button class="modal-close" onclick="closeAdminPanel()">✕</button>
+    <h2>⚙️ Website Settings</h2>
+
+    <div class="ap-section">
+      <h3>🏠 Basic Information</h3>
+      <div class="form-row">
+        <div class="fg"><label>Family Name</label><input type="text" id="ap-family-name" placeholder="e.g. Yadav"></div>
+        <div class="fg"><label>Tagline</label><input type="text" id="ap-tagline" placeholder="e.g. One Family, One Identity"></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Founded Year</label><input type="text" id="ap-established" placeholder="e.g. 1955"></div>
+        <div class="fg"><label>Village / Hometown</label><input type="text" id="ap-hometown" placeholder="e.g. Pathreri, Paota"></div>
+      </div>
+      <div class="fg"><label>New Admin Password <span style="font-weight:400;color:var(--text-light)">(leave blank to keep current)</span></label><input type="password" id="ap-password" placeholder="New password..."></div>
+    </div>
+
+    <div class="ap-section">
+      <h3>📸 Hero Photos (Slideshow)</h3>
+      <p class="ap-hint">These photos rotate automatically in the hero section. Add as many as you like.</p>
+      <div id="ap-photo-list"></div>
+
+      <div class="photo-add-box">
+        <div class="photo-add-title">➕ Add a New Photo</div>
+
+        <!-- METHOD 1: File Upload -->
+        <div class="photo-method active-method">
+          <div class="method-label">📁 Upload from Device <span class="recommended-badge">Recommended</span></div>
+          <p class="method-hint">Pick any photo from your phone or computer — no links needed!</p>
+          <div class="fg"><label>Caption <span style="font-weight:400">(optional)</span></label><input type="text" id="ap-photo-caption" placeholder="e.g. Diwali 2024, Holi Celebration..."></div>
+          <input type="file" id="ap-file-input" accept="image/*" multiple style="display:none" onchange="handlePhotoFilePick(this)">
+          <button id="ap-upload-btn" class="btn-upload" onclick="document.getElementById('ap-file-input').click()">
+            📁 Choose Photo(s) from Device
+          </button>
+          <p class="method-hint">💡 You can select multiple photos at once (Ctrl+Click or long-press on phone)</p>
+        </div>
+
+        <!-- METHOD 2: Paste Image -->
+        <div class="photo-method">
+          <div class="method-label">📋 Paste an Image <span class="paste-badge">New!</span></div>
+          <p class="method-hint">Copy any image and paste it directly here — from WhatsApp, Google Photos, anywhere!</p>
+          <div class="fg"><label>Caption <span style="font-weight:400">(optional)</span></label><input type="text" id="ap-paste-caption" placeholder="e.g. Family Reunion 2024..."></div>
+          <div id="paste-drop-zone" class="paste-zone" tabindex="0">
+            <div class="paste-zone-inner">
+              <div class="paste-icon">📋</div>
+              <div class="paste-text">Click here, then press <kbd>Ctrl+V</kbd> to paste</div>
+              <div class="paste-hint">Or drag & drop an image here</div>
+            </div>
+            <img id="paste-preview" class="paste-preview-img" style="display:none" alt="Pasted image preview">
+          </div>
+          <button id="ap-paste-add-btn" class="btn-gold" onclick="addPastedPhoto()" style="display:none;margin-top:8px">
+            ✓ Add This Photo
+          </button>
+        </div>
+
+        <!-- METHOD 3: URL -->
+        <details class="url-method">
+          <summary>Or enter a direct image URL (advanced)</summary>
+          <div class="url-method-inner">
+            <div class="fg"><label>Direct Image URL</label><input type="url" id="ap-photo-url" placeholder="https://i.imgur.com/... (only direct .jpg/.png links work)"></div>
+            <div class="fg"><label>Caption <span style="font-weight:400">(optional)</span></label><input type="text" id="ap-url-caption" placeholder="e.g. Holi 2024"></div>
+            <button class="btn-gold" onclick="addHeroPhotoURL()">🔗 Add via URL</button>
+            <p class="warn-hint">⚠️ Google Photos & WhatsApp links won't work. Use imgur.com or GitHub raw links.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="ap-section">
+      <h3>📢 Announcements</h3>
+      <div id="ap-announce-list"></div>
+      <div class="ap-add-row">
+        <input type="text" id="ap-announce-text" placeholder="Write a new announcement...">
+        <button class="btn-gold" onclick="addAnnouncement()">➕ Add</button>
+      </div>
+    </div>
+
+    <div class="ap-section">
+      <h3>🔖 Filter Tabs <span style="font-size:13px;font-weight:400;color:var(--text-light)">(on Family page)</span></h3>
+      <p class="ap-hint">These tabs help filter members on the Family page.</p>
+      <div id="ap-filter-list"></div>
+      <div class="filter-add-box">
+        <div class="photo-add-title">➕ New Filter Tab</div>
+        <div class="form-row">
+          <div class="fg"><label>Tab Label</label><input type="text" id="ap-filter-label" placeholder="e.g. 👶 Grandparents"></div>
+          <div class="fg"><label>Relations (comma separated)</label><input type="text" id="ap-filter-relations" placeholder="e.g. Nana, Nani, Dada, Dadi"></div>
+        </div>
+        <button class="btn-gold" onclick="addFilterGroup()">➕ Add Tab</button>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel-m" onclick="closeAdminPanel()">Close</button>
+      <button class="btn-save-m" onclick="saveAdminPanel()">✓ Save All Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL: ADD / EDIT MEMBER ══════════ -->
+<div class="overlay" id="member-overlay">
+  <div class="mbox">
+    <button class="modal-close" onclick="closeMemberModal()">✕</button>
+    <h2 id="mm-title">Add New Member</h2>
+    <div class="form-row">
+      <div class="fg"><label>Full Name *</label><input type="text" id="mm-name" placeholder="e.g. Ramesh Kumar Yadav"></div>
+      <div class="fg"><label>Relation *</label>
+        <select id="mm-relation">
+          <option value="">— Select —</option>
+          <option value="Dada">Dada</option><option value="Dadi">Dadi</option>
+          <option value="Nana">Nana</option><option value="Nani">Nani</option>
+          <option value="Papa">Papa</option><option value="Mummy">Mummy</option>
+          <option value="Tau">Tau</option><option value="Tai">Tai</option>
+          <option value="Chacha">Chacha</option><option value="Chachi">Chachi</option>
+          <option value="Mama">Mama</option><option value="Mami">Mami</option>
+          <option value="Bua">Bua</option><option value="Fufa">Fufa</option>
+          <option value="Bhai">Bhai</option><option value="Bhabhi">Bhabhi</option>
+          <option value="Behen">Behen</option><option value="Jija">Jija</option>
+          <option value="Cousin">Cousin</option><option value="Main">Me (Self)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label>Relation in Hindi <span style="font-weight:400">(e.g. दादा जी)</span></label><input type="text" id="mm-relation-hi" placeholder="e.g. दादा जी"></div>
+      <div class="fg"><label>Generation</label>
+        <select id="mm-gen">
+          <option value="1">1st — Dada / Dadi</option>
+          <option value="2">2nd — Parents / Chacha</option>
+          <option value="3" selected>3rd — Cousins / Us</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label>Gender</label>
+        <select id="mm-gender"><option value="male">Male</option><option value="female">Female</option></select>
+      </div>
+      <div class="fg"><label>Current Role ★</label><input type="text" id="mm-current-role" placeholder="e.g. Software Engineer"></div>
+    </div>
+    <div class="fg"><label>Work Details ★</label><input type="text" id="mm-occupation" placeholder="e.g. Working at TCS Delhi for 4 years"></div>
+    <div class="form-row">
+      <div class="fg"><label>Education</label><input type="text" id="mm-education" placeholder="e.g. B.Tech CSE"></div>
+      <div class="fg"><label>Phone</label><input type="tel" id="mm-phone" placeholder="98765 43210"></div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label>Birthday</label><input type="date" id="mm-dob"></div>
+      <div class="fg"><label>City</label><input type="text" id="mm-city" placeholder="e.g. Jaipur, Rajasthan"></div>
+    </div>
+
+    <!-- Photo section with upload + paste + URL -->
+    <div class="fg">
+      <label>Member Photo</label>
+      <div class="member-photo-area">
+        <div class="member-photo-tabs">
+          <button type="button" class="mphoto-tab active" onclick="switchMemberPhotoTab('upload',this)">📁 Upload</button>
+          <button type="button" class="mphoto-tab" onclick="switchMemberPhotoTab('paste',this)">📋 Paste</button>
+          <button type="button" class="mphoto-tab" onclick="switchMemberPhotoTab('url',this)">🔗 URL</button>
+        </div>
+        <div id="mphoto-upload" class="mphoto-panel active">
+          <input type="file" id="mm-file-input" accept="image/*" style="display:none" onchange="handleMemberPhotoUpload(this)">
+          <button type="button" id="mm-photo-upload-btn" onclick="document.getElementById('mm-file-input').click()" class="btn-upload-sm">📁 Choose Photo from Device</button>
+        </div>
+        <div id="mphoto-paste" class="mphoto-panel">
+          <div id="member-paste-zone" class="paste-zone paste-zone-sm" tabindex="0">
+            <div class="paste-zone-inner">
+              <div class="paste-icon" style="font-size:1.5rem">📋</div>
+              <div class="paste-text">Click here, then press <kbd>Ctrl+V</kbd></div>
+            </div>
+            <img id="member-paste-preview" class="paste-preview-img" style="display:none" alt="Preview">
+          </div>
+        </div>
+        <div id="mphoto-url" class="mphoto-panel">
+          <input type="url" id="mm-photo" placeholder="https://... (direct image link)">
+        </div>
+        <img id="mm-photo-preview" src="" alt="preview" class="mm-preview-img" style="display:none">
+      </div>
+    </div>
+
+    <div class="fg"><label>Special Note</label><textarea id="mm-note" placeholder="Any achievement or special information..."></textarea></div>
+    <div class="modal-footer">
+      <button class="btn-cancel-m" onclick="closeMemberModal()">Cancel</button>
+      <button class="btn-save-m" onclick="saveMember()">Save Member ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MODAL: ADD / EDIT EVENT ══════════ -->
+<div class="overlay" id="event-overlay">
+  <div class="mbox" style="max-width:440px">
+    <button class="modal-close" onclick="closeEventModal()">✕</button>
+    <h2 id="em-title-h">Add New Event</h2>
+    <div class="fg"><label>Event Name *</label><input type="text" id="em-title" placeholder="e.g. Dada ji's Birthday"></div>
+    <div class="form-row">
+      <div class="fg"><label>Date *</label><input type="date" id="em-date"></div>
+      <div class="fg"><label>Type</label>
+        <select id="em-type">
+          <option value="birthday">🎂 Birthday</option>
+          <option value="reunion">🏡 Reunion</option>
+          <option value="wedding">💍 Wedding</option>
+          <option value="festival">🪔 Festival</option>
+          <option value="other">📅 Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="fg"><label>Details</label><textarea id="em-desc" placeholder="Tell us about this event..."></textarea></div>
+    <div class="modal-footer">
+      <button class="btn-cancel-m" onclick="closeEventModal()">Cancel</button>
+      <button class="btn-save-m" onclick="saveEvent()">Save Event ✓</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
