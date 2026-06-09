@@ -1,7 +1,7 @@
 
 
-cat > /tmp/clean_main.js << 'EOF'
-// YADAV FAMILY WEBSITE - FIREBASE VERSION
+// cat > /tmp/clean_main.js << 'EOF'
+// // YADAV FAMILY WEBSITE - FIREBASE VERSION
 
 var firebaseConfig = {
   apiKey: "AIzaSyDAC6aREQq0Zv0eIKikgHRjbJA2BaLmLvs",
@@ -534,5 +534,5 @@ document.addEventListener('DOMContentLoaded', function() {
     if (el) el.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
   });
 });
-EOF
-echo "Lines: $(wc -l < /tmp/clean_main.js)"
+// EOF
+// echo "Lines: $(wc -l < /tmp/clean_main.js)"
