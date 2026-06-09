@@ -521,3 +521,25 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('admin-pw').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();document.getElementById('admin-err').textContent='';});
   ['admin-overlay','member-overlay','event-overlay','admin-panel-overlay','crop-overlay'].forEach(function(id){const el=document.getElementById(id);if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
 });
+// ── EXPOSE FUNCTIONS TO WINDOW (required for ES module) ──
+window.showPage=showPage; window.toggleNav=toggleNav; window.closeNav=closeNav;
+window.openAdminLogin=openAdminLogin; window.closeAdminLogin=closeAdminLogin;
+window.doLogin=doLogin; window.doLogout=doLogout;
+window.openAdminPanel=openAdminPanel; window.closeAdminPanel=closeAdminPanel;
+window.saveAdminPanel=saveAdminPanel;
+window.openAddMember=openAddMember; window.openEditMember=openEditMember;
+window.closeMemberModal=closeMemberModal; window.saveMember=saveMember;
+window.deleteMember=deleteMember;
+window.openAddEvent=openAddEvent; window.openEditEvent=openEditEvent;
+window.closeEventModal=closeEventModal; window.saveEvent=saveEvent;
+window.deleteEvent=deleteEvent;
+window.prevSlide=prevSlide; window.nextSlide=nextSlide; window.goHeroSlide=goHeroSlide;
+window.handlePhotoFilePick=handlePhotoFilePick; window.handlePastePhoto=handlePastePhoto;
+window.addHeroPhoto=addHeroPhoto; window.removePhoto=removePhoto; window.movePhoto=movePhoto;
+window.handleMemberPhotoUpload=handleMemberPhotoUpload; window.handleMemberPaste=handleMemberPaste;
+window.openCropModal=openCropModal; window.closeCropModal=closeCropModal; window.applyCrop=applyCrop;
+window.addAnnouncement=addAnnouncement; window.editAnnouncement=editAnnouncement;
+window.removeAnnouncement=removeAnnouncement;
+window.addFilterGroup=addFilterGroup; window.editFilterGroup=editFilterGroup;
+window.removeFilterGroup=removeFilterGroup;
+window.setFilter=setFilter; window.exportJSON=exportJSON;
