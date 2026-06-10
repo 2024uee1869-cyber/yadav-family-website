@@ -377,8 +377,8 @@ function closeCropModal() {
 }
 function applyCrop() {
   if (!cropInstance) return;
-  var canvas = cropInstance.getCroppedCanvas({maxWidth: cropTarget==='hero'?800:300, maxHeight: cropTarget==='hero'?450:300});
- var b64 = canvas.toDataURL('image/jpeg', 0.35);
+  var canvas = cropInstance.getCroppedCanvas({maxWidth: cropTarget==='hero'?800:400, maxHeight: cropTarget==='hero'?450:400});
+ var b64 = canvas.toDataURL('image/jpeg', 0.7);
   var caption = getVal('crop-caption').trim();
   if (cropTarget === 'hero') {
     if (!fd.heroPhotos) fd.heroPhotos = [];
