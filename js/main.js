@@ -13,6 +13,26 @@ firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 var DOC_REF = db.collection("family").doc("data");
 
+// CLOUDINARY CONFIG
+var CLOUDINARY_CLOUD = 'daivtnfcz';
+var CLOUDINARY_PRESET = 'yadav_family';
+
+function uploadToCloudinary(base64Data) {
+  return new Promise(function(resolve, reject) {
+    var formData = new FormData();
+    formData.append('file', base64Data);
+    formData.append('upload_preset', CLOUDINARY_PRESET);
+    fetch('https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD + '/image/upload', {
+      method: 'POST',
+      body: formData
+    }).then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.secure_url) resolve(data.secure_url);
+        else reject('Upload failed');
+      }).catch(reject);
+  });
+}
+
 var fd=null, isAdmin=false, editMemberId=null, editEventId=null;
 var activeFilter='all', heroSlideIndex=0, heroTimer=null;
 var cropInstance=null, cropTarget=null;
@@ -377,19 +397,27 @@ function closeCropModal() {
 }
 function applyCrop() {
   if (!cropInstance) return;
-  var canvas = cropInstance.getCroppedCanvas({maxWidth: cropTarget==='hero'?800:400, maxHeight: cropTarget==='hero'?450:400});
- var b64 = canvas.toDataURL('image/jpeg', 0.7);
-  var caption = getVal('crop-caption').trim();
-  if (cropTarget === 'hero') {
-    if (!fd.heroPhotos) fd.heroPhotos = [];
-    fd.heroPhotos.push({url: b64, caption: caption || ''});
-    save().then(function() { renderHeroPhotoList(); startHeroSlideshow(); closeCropModal(); });
-  } else if (cropTarget === 'member') {
-    setVal('mm-photo', b64);
-    var prev = document.getElementById('mm-photo-preview');
-    if (prev) { prev.src = b64; prev.style.display = 'block'; }
-    closeCropModal();
-  }
+  var canvas = cropInstance.getCroppedCanvas({maxWidth: cropTarget==="hero"?1400:600, maxHeight: cropTarget==="hero"?800:600});
+  var b64 = canvas.toDataURL("image/jpeg", 0.92);
+  var caption = getVal("crop-caption").trim();
+  var saveBtn = document.querySelector("#crop-overlay .btn-save-m");
+  if (saveBtn) { saveBtn.textContent = "⏳ Uploading..."; saveBtn.disabled = true; }
+  uploadToCloudinary(b64).then(function(url) {
+    if (saveBtn) { saveBtn.textContent = "✂️ Save Cropped Photo"; saveBtn.disabled = false; }
+    if (cropTarget === "hero") {
+      if (!fd.heroPhotos) fd.heroPhotos = [];
+      fd.heroPhotos.push({url: url, caption: caption || ""});
+      save().then(function() { renderHeroPhotoList(); startHeroSlideshow(); closeCropModal(); });
+    } else if (cropTarget === "member") {
+      setVal("mm-photo", url);
+      var prev = document.getElementById("mm-photo-preview");
+      if (prev) { prev.src = url; prev.style.display = "block"; }
+      closeCropModal();
+    }
+  }).catch(function() {
+    if (saveBtn) { saveBtn.textContent = "✂️ Save Cropped Photo"; saveBtn.disabled = false; }
+    alert("Photo upload failed! Check internet.");
+  });
 }
 
 function handlePhotoFilePick(input) {
